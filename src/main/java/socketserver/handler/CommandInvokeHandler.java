@@ -20,6 +20,6 @@ public class CommandInvokeHandler extends SimpleChannelInboundHandler<ReqPacket>
 
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, ReqPacket msg) throws Exception {
-		msg.getCommand().handler.accept(ctx, msg);
+		msg.getCommand().handler.apply(ctx, msg);
 	}
 }

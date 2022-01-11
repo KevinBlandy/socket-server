@@ -55,6 +55,9 @@ public class SocketChannelInitializer extends ChannelInitializer<Channel> {
 		pipeline.addLast(IdleStateEventHandler.INSTANCE);
 		
 		
+		// 注册指令处理【入】
+		
+		
 		// 通用指令处理【入】
 		pipeline.addLast(CommandInvokeHandler.INSTANCE);  // TODO 耗时请求，可以单独设置线程池作为执行器
 		

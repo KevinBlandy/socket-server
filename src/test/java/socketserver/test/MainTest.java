@@ -1,26 +1,23 @@
 package socketserver.test;
 
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufUtil;
 import io.netty.buffer.Unpooled;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MainTest {
 	public static void main(String[] args) {
-		ByteBuf in = Unpooled.wrappedBuffer(new byte[] {0x01, });
+		ByteBuf in = Unpooled.wrappedBuffer(new byte[] {0x01, 0x02, 0x03, 0x04});
+		
+		in.readByte();
 
-		log.info("arr={}", ByteBufUtil.getBytes(in));
+		ByteBuf newBuf = in.readBytes(2);
 		
-		log.info("buf={}", in);
+		// log.info("arr={}", ByteBufUtil.getBytes(in));
 		
-		in.skipBytes(in.readableBytes());
+		log.info("buf = {}", in);
+		log.info("new buf={}", newBuf);
 		
-		log.info("buf={}", in);
 		
-		
-		in = in.readerIndex(0).writerIndex(in.readableBytes() - 1);
-		
-		log.info(ByteBufUtil.hexDump(in));
 	}
 }
