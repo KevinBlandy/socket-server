@@ -45,7 +45,7 @@ public class SocketChannelInitializer extends ChannelInitializer<Channel> {
 		pipeline.addLast(new RespPacketEncoder());
 
 		// SocketFrame，TCP拆/粘包 【入】
-		pipeline.addLast(new LengthFieldBasedFrameDecoder(ByteOrder.BIG_ENDIAN, 0xFFFF, 5, 12, 2, 0, true));
+		pipeline.addLast(new LengthFieldBasedFrameDecoder(ByteOrder.BIG_ENDIAN, 0xFFFF, 5, 12, 0, 0, true));
 		
 		// 编码为ReqPacket【入】
 		pipeline.addLast(new ReqPacketDecoder());
