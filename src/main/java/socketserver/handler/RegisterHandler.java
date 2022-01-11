@@ -13,7 +13,9 @@ import socketserver.protocol.Command;
 import socketserver.protocol.ReqPacket;
 
 @Slf4j
-public class RegisterHandler extends SimpleChannelInboundHandler<ReqPacket>{
+public class RegisterHandler extends SimpleChannelInboundHandler<ReqPacket> {
+	
+	public static final RegisterHandler INSTANCE = new RegisterHandler();
 
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, ReqPacket msg) throws Exception {
