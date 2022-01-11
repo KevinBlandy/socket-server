@@ -44,9 +44,6 @@ public class CRC16 {
 			crc = (crc << 8) ^ LOOKUP_TABLE[((crc >>> 8) ^ (bytes.readByte() & 0xFF)) & 0xFF];
 		}
 
-//        for (byte b : bytes) {
-//            crc = (crc << 8) ^ LOOKUP_TABLE[((crc >>> 8) ^ (b & 0xFF)) & 0xFF];
-//        }
 		return crc & 0xFFFF;
 	}
 }

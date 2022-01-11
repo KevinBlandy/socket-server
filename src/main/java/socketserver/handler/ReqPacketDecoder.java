@@ -20,8 +20,7 @@ public class ReqPacketDecoder extends ByteToMessageDecoder {
 		packet.decode(in);
 
 		// CRC 校验
-		int checkSum = CRC16.crc16(in.readerIndex(0)
-				.slice(0, in.readableBytes() - 1));
+		int checkSum = CRC16.crc16(in.readerIndex(0).slice(0, in.readableBytes() - 1));
 		
 		if (checkSum != packet.getCheckSum().intValue()) {
 			log.warn("CRC16校验失败: remote={}, local={}", Integer.toHexString(packet.getCheckSum()), Integer.toHexString(checkSum));
