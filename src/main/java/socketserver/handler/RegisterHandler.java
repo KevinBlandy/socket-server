@@ -53,7 +53,7 @@ public class RegisterHandler extends SimpleChannelInboundHandler<ReqPacket> {
 					deviceInfo.setDisConnectAt(System.currentTimeMillis()); 	// 断开连接的时间
 				}
 				
-				log.info("连接断开: {}, 移除在线设备信息: {}", channel.id(), deviceInfo);				
+				log.info("连接断开: {}, 移除在线设备信息: {}", channel.id(), deviceInfo.getCode());				
 			}
 		});
 
