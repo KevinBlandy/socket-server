@@ -34,7 +34,7 @@ public class RespPacket extends Packet {
 		}
 		buf.writeShort(CRC16.crc16(ByteBufUtil.getBytes(buf)));
 		
-		return buf.readerIndex(0);
+		return buf;
 	}
 
 	@Override

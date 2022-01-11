@@ -36,7 +36,7 @@ public class ReqPacket extends Packet {
 			buf.writeBytes(super.getContent());
 		}
 		buf.writeShort(CRC16.crc16(ByteBufUtil.getBytes(buf)));
-		return buf.readerIndex(0);
+		return buf;
 	}
 
 	@Override
