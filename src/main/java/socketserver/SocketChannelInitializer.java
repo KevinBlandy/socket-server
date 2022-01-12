@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import socketserver.handler.CommandInvokeHandler;
 import socketserver.handler.ExceptionHandler;
 import socketserver.handler.IdleStateEventHandler;
+import socketserver.handler.RegisterHandler;
 import socketserver.handler.ReqPacketDecoder;
 import socketserver.handler.RespPacketEncoder;
 
@@ -45,7 +46,7 @@ public class SocketChannelInitializer extends ChannelInitializer<Channel> {
 		pipeline.addLast(new RespPacketEncoder());
 
 		// SocketFrame，TCP拆/粘包 【入】
-		pipeline.addLast(new LengthFieldBasedFrameDecoder(ByteOrder.BIG_ENDIAN, 0xFFFF, 5, 12, 0, 0, true));
+		pipeline.addLast(new LengthFieldBasedFrameDecoder(ByteOrder.BIG_ENDIAN, 0xFFFF, 5, 12, 2, 0, true));
 		
 		// 编码为ReqPacket【入】
 		pipeline.addLast(new ReqPacketDecoder());
@@ -56,7 +57,8 @@ public class SocketChannelInitializer extends ChannelInitializer<Channel> {
 		
 		
 		// 注册指令处理【入】
-		pipeline.addLast();
+		pipeline.addLast(RegisterHandler.INSTANCE);
+		
 		// 通用指令处理【入】
 		pipeline.addLast(CommandInvokeHandler.INSTANCE);  // TODO 耗时请求，可以单独设置线程池作为执行器
 		

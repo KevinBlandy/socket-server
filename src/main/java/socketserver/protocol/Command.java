@@ -5,7 +5,9 @@ import java.util.Map;
 import java.util.function.BiFunction;
 
 import io.netty.channel.ChannelHandlerContext;
+import socketserver.action.DataAction;
 import socketserver.action.RegisterAction;
+import socketserver.action.StatusAction;
 
 /**
  * 
@@ -20,8 +22,8 @@ public enum Command {
 	 * 设备上传
 	 */
 	REGISTER(0x1001, "注册", "设备连接注册到服务器", new RegisterAction()),
-	STATUS(0x1002, "上传状态包", "设备定时发送状态数据到服务器", null),
-	DATA(0x1003, "上传数据包", "设备定时发送数据包到服务器", null),
+	STATUS(0x1002, "上传状态包", "设备定时发送状态数据到服务器", new StatusAction()),
+	DATA(0x1003, "上传数据包", "设备定时发送数据包到服务器", new DataAction()),
 	
 	
 	
